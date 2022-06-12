@@ -6,17 +6,17 @@ const router = Router();
 
 router.get('/', getAllusers);
 
-router.get('/:name',getUserByName);
+router.get('/:name', getUserByName);
 
 //follow and unfollow
 router.post('/',
     [
-        check('id','tu id de usuario es obligatorio').not().isEmpty(),
-        check('uid','El identificador del usuario a seguir es obligatorio').not().isEmpty()
+        check('userLike', 'tu id de usuario es obligatorio').not().isEmpty(),
+        check('userToFollow', 'El identificador del usuario a seguir es obligatorio').not().isEmpty()
     ],
     validarCampos
-,
-newFollower
+    ,
+    newFollower
 );
 
 module.exports = router;

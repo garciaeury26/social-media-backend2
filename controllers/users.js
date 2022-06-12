@@ -41,19 +41,20 @@ const getUserByName = async (req = reques, res = response) => {
 };
 
 const newFollower = async (req = request, res = response) => {
-    const { id,  uid } = req.body;
+    const { userLike, userToFollow } = req.body;
     try {
-        const user = await User.findById(id);
-        if (!user.followers.includes(uid)) {
+        const user = await User.findById(userToFollow);
+
+        if (!user.followers.includes(userLike)) {
             console.log('follow')
-            await User.updateOne({ $push: { followers: uid } })
-             res.status(200).json({
+            await user.updateOne({ $push: { followers: userLike } })
+            res.status(200).json({
                 ok: true,
                 user,
                 msg: 'follow'
             });
         } else {
-            await User.updateOne({ $pull: { followers: uid } }  )
+            await user.updateOne({ $pull: { followers: userLike } })
             console.log('unfollow')
             return res.status(200).json({
                 ok: true,

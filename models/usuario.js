@@ -28,9 +28,9 @@ const UserSchema = Schema({
         default: false
     },
 
-    followers:{
-        type:Array,
-        default:[]
+    followers: {
+        type: Array,
+        default: [],
     }
 });
 
